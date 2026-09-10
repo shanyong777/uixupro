@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Reset and Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color Tokens - Cyberpunk Developer HUD (Dark Mode Default) */
+  --bg-deep: #090B11;       /* Deep space background */
+  --bg-base: #0F121D;       /* Card/Panel background */
+  --bg-elevated: #161B2B;   /* Active tab/modal background */
+  --color-primary: #06B6D4; /* Neon Cyan */
+  --color-primary-glow: rgba(6, 182, 212, 0.15);
+  --color-secondary: #6366F1; /* Indigo */
+  --color-accent: #10B981;    /* Emerald Green for success states */
+  --color-foreground: #F8FAFC; /* Crisp white */
+  --color-foreground-muted: #94A3B8; /* Muted slate */
+  --color-border: rgba(6, 182, 212, 0.12);
+  --color-border-hover: rgba(6, 182, 212, 0.3);
+  
+  /* Glassmorphism */
+  --color-glass-bg: rgba(15, 18, 29, 0.7);
+  --color-glass-border: rgba(6, 182, 212, 0.08);
+  --color-glass-shadow: rgba(0, 0, 0, 0.4);
+  --blur-amount: 20px;
+  
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Layout & Spacing */
+  --radius-card: 20px;
+  --radius-button: 12px;
+  --radius-pill: 999px;
+  
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-quick: all 0.15s ease;
+  
+  scroll-behavior: smooth;
+}
+
+/* Custom Sleek Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(5, 7, 12, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.35);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.7);
+}
+
+html, body, #root {
+  height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Glassmorphic HUD Panels */
+.glass-panel {
+  background: var(--bg-base);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 32px 0 var(--color-glass-shadow);
+  border-radius: var(--radius-card);
+  transition: var(--transition-smooth);
+}
+
+.glass-panel:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* Buttons */
+button, .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: var(--radius-button);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--bg-deep);
+  box-shadow: 0 0 16px 0 rgba(6, 182, 212, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #22d3ee;
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px 0 rgba(6, 182, 212, 0.5);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--bg-elevated);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--bg-base);
+  border-color: var(--color-border-hover);
+  transform: translateY(-1px);
+}
+
+/* Custom Interactive States */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Code Editor Stylings */
+.code-editor {
+  font-family: var(--font-mono);
+  background-color: #06080d;
+  color: #a5f3fc;
+  border-radius: 12px;
+  border: 1px solid rgba(6, 182, 212, 0.1);
+  padding: 16px;
+  font-size: 0.85rem;
+  overflow: auto;
+  line-height: 1.5;
+}
+
+/* Main Grid Layout */
+.app-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 1100px) {
+  .app-grid {
+    grid-template-columns: 320px 1fr;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-grid {
+    grid-template-columns: 1fr;
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+/* Floating background glow */
+.hud-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.glow-cyan {
+  background: var(--color-primary);
+  top: -200px;
+  left: 20%;
+}
+
+.glow-indigo {
+  background: var(--color-secondary);
+  bottom: -200px;
+  right: 20%;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
