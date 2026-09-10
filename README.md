@@ -1,5 +1,9 @@
 # UIXUPro - AI-Powered Website & UI Generator
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_UIXUPro-6366f1?style=for-the-badge&logo=github)](https://shanyong777.github.io/uixupro/)
+
+> **Live Application**: [https://shanyong777.github.io/uixupro/](https://shanyong777.github.io/uixupro/)
+
 UIXUPro is a modern web application for generating, previewing, and customizing full responsive websites and UI layouts with AI. Built with Vite, React 19, Phosphor Icons, Three.js, GSAP, and Tailwind-compatible styling patterns.
 
 ---
